@@ -27,6 +27,16 @@ char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
+char	*ft_extract(char *tmp)
+{
+	char	*keep_tmp;
+
+	keep_tmp = ft_strdup(ft_strchr(tmp, '\n') + 1);
+	free(tmp);
+	tmp = keep_tmp;
+	return (tmp);
+}
+
 char	*ft_free(char **tmp, char **buff, ssize_t b, char *str)
 {
 	if (*tmp && **tmp && b == 0)
@@ -78,16 +88,6 @@ char	*ft_verify(char *tmp, char *buff, int read_bytes)
 		free(tmp);
 		tmp = ft_strdup(buff);
 	}
-	return (tmp);
-}
-
-char	*ft_extract(char *tmp)
-{
-	char	*keep_tmp;
-
-	keep_tmp = ft_strdup(ft_strchr(tmp, '\n') + 1);
-	free(tmp);
-	tmp = keep_tmp;
 	return (tmp);
 }
 
