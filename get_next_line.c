@@ -27,14 +27,13 @@ char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-char	*ft_extract(char *tmp)
+void    ft_extract(char **tmp)
 {
 	char	*keep_tmp;
 
-	keep_tmp = ft_strdup(ft_strchr(tmp, '\n') + 1);
-	free(tmp);
-	tmp = keep_tmp;
-	return (tmp);
+	keep_tmp = ft_strdup(ft_strchr(*tmp, '\n') + 1);
+	free(*tmp);
+	*tmp = keep_tmp;
 }
 
 char	*ft_free(char **tmp, char **buff, ssize_t b, char *str)
@@ -52,7 +51,7 @@ char	*ft_free(char **tmp, char **buff, ssize_t b, char *str)
 	{
 		str = ft_substr(*tmp, 0, (ft_strlen(*tmp)
 					- ft_strlen(ft_strchr(*tmp, '\n'))) + 1);
-		*tmp = ft_extract(*tmp);
+		ft_extract(tmp);
 		return (str);
 	}
 	free(*tmp);
